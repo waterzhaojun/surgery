@@ -1,0 +1,83 @@
+<div class="form-group">
+    <label>Experiment catalog</label>
+    <select class="exp-catalog" id="exp_catalog">
+        <option value="aav_inject"> aav inject </option>
+        <option value="window_setup"> window setup </option>
+    </select>
+</div>
+<hr>
+<!--
+<label>{{ exp_catalog }}</label>
+<br>
+{% if exp_catalog != "aav_inject" %}
+    <div class="aav-inject-form">
+        <form action="/print/" method="post">
+            <label for="your_name">Your name: </label>
+            <input id="your_name" type="text" name="your_name" value="{{ current_name }}"><br>
+            <label>AAV: </label>
+            <select id="aav">
+                <option value="">Volvo</option>
+                <option value="">Saab</option>
+                <option value="">Fiat</option>
+                <option value="">Audi</option>  
+            </select>
+            <input type="submit" value="OK">
+        </form>
+    </div>
+{% endif %}
+-->
+
+<div class="window-setup-form">
+    <form action="aav_inject" method="post">
+        {% csrf_token %}
+        <label>Animal ID: </label>
+        <input type="text" name="animalid">
+        <br>
+        <br>
+        <label>AAV: </label>
+        <select name="aav">
+            <option value="AAV5-CAG.GCaMP6s-WPRE.SV40">AAV5-CAG.GCaMP6s-WPRE.SV40</option>
+            <option value="AAV1-CAG.GCaMP6s-WPRE">AAV1-CAG.GCaMP6s-WPRE</option>
+            <option value="AAV5.GfaABC1D.cytoGCaMP6f.SV40">AAV5.GfaABC1D.cytoGCaMP6f.SV40</option>
+            <option value="AAV2/5-GFAP-hM3D(Gq)-mcherry">AAV2/5-GFAP-hM3D(Gq)-mcherry</option>
+            <option value="pAAV-hSyn-hM4D(Gi)-mCherry">pAAV-hSyn-hM4D(Gi)-mCherry</option>
+        </select>
+        <br>
+        <br>
+        <label>Inject Method: </label>
+        <select name="inject_method">
+            <option value="apply topically">apply topically</option>
+            <option value="TG injection from contra lateral cortex">TG injection from contra lateral cortex</option>
+        </select>
+        <br>
+        <br>
+
+        <label>Inject dose: </label>
+        <input name="inject_dose" type="number" step=any><label>ul</label>
+        <br>
+        <br>
+
+        <label>inject tool: </label>
+        <select name="inject_tool">
+            <option value="glass pipette">glass pipette</option>
+            <option value="needle">needle</option>
+        </select>
+        <br>
+        <br>
+
+        <label>inject date: </label>
+        <input type="date" name="date">
+        <br>
+        <br>
+
+        <label>result: </label>
+        <input type="text" name="result">
+        <br>
+        <br>
+        
+        <input type="submit" value="Submit">
+        <br>
+        <br>
+    </form>
+</div>
+
