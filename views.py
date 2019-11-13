@@ -2,14 +2,21 @@ from django.shortcuts import render
 import os
 import json
 from datetime import datetime
+from django.views import generic, View
+from .models import SurgInfo
 
-root = '/Users/Melody/Documents/expdata/SURG'
+# root = '/Users/Melody/Documents/expdata/SURG'
 # Create your views here.
-def index(request):
-    #animals = TransgenicAnimalLog.objects.all()
-    template = 'surgery/index.html' # loader.get_template('transgmice/index.html') 用了shortcut就不需要用loader了
-    return render(request, template)#, context)
 
+class index(generic.ListView):
+    template_name = 'surgery/index.html'   # if use ListView class, default template_name is _list.html. So you have to revise it.
+    queryset = SurgInfo.objects.filter(terminated = False)   # default output variable. In template, use object_list to refer to this.
+    # the default output to tmplate is object_list
+    def get_context_data(self, **kwargs):
+        # queryset is the default output, besides that, you can use get_context_data to add more in the dict.
+        context = super(index, self).get_context_data(**kwargs)
+        return context
+"""
 def aav_inject(request):
     template = 'surgery/animalInfo.html'
     # form = RegisterForm()
@@ -53,4 +60,4 @@ def update_info(animalid, context):
     info['treatment'].append(newtreat)
 
     with open(path, 'w') as f:
-        json.dump(info, f, indent=4)
+        json.dump(info, f, indent=4)"""
