@@ -1,0 +1,19 @@
+id: {{ animal.animalid }}<br>
+species: {{ animal.species }}<br>
+strain: {{ animal.strain }}<br>
+gender: {{ animal.gender }}<br>
+transgenic id: {{ animal.transgenic_id }}<br>
+birthday: {{ animal.birthday }}<br>
+ear punch: {{ animal.ear_punch }}<br>
+Treatments: <br>
+{% for value in treatments %}
+===================================================<br>
+{{ value.method }}<br>
+{{ value.date}}<br>
+{% for key, value in value.parameters.items %}
+{{ key }}: {{ value }}<br>
+{% endfor %}
+{% endfor %}
+<br>
+
+<a href="../">return</a>

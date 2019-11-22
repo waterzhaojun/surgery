@@ -8,15 +8,22 @@
         <h3>Surgery treated animal list</h3><br>
         <table>
             <tr>
-                <th>id</th>
+                <th>animalid</th>
                 <th>gender</th>
                 <th>transgenic id</th>
+                <th>method</th>
             </tr>
             {% for obj in object_list %}
             <tr>
-                <td>{{ obj.id }}</td>
+                <td><a href = "{% url 'info' obj.animalid %}">{{ obj.animalid }}</a></td>
+                
                 <td>{{ obj.gender }}</td>
                 <td>{{ obj.transgenic_id }}</td>
+                <td>
+                {% for t in obj.surgtreatment_set.all %}
+                {{ t.method }} ({{ t.date }}) &nbsp
+                {% endfor %}
+                </td>
             </tr>
             {% endfor %}
         </table>
