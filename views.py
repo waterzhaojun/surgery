@@ -7,16 +7,13 @@ from .models import SurgInfo, SurgTreatment
 
 class index(generic.ListView):
     template_name = 'surgery/index.html'   # if use ListView class, default template_name is _list.html. So you have to revise it.
-    queryset = SurgInfo.objects.select_related().filter(terminated = False)   # default output variable. In template, use object_list to refer to this.
+    queryset = sorted(SurgInfo.objects.select_related().filter(terminated = False), key = lambda t: t.animalid)   # default output variable. In template, use object_list to refer to this.
     # the default output to tmplate is object_list
-    def get_context_data(self, **kwargs):
+    # def get_context_data(self, **kwargs):
         # queryset is the default output, besides that, you can use get_context_data to add more in the dict.
-        context = super(index, self).get_context_data(**kwargs)
-        context['animals'] = sorted(SurgInfo.objects.all(), key = lambda t: t.animalid)
-        #context['treatments'] = context['animals'][0].surgtreatment_set.all()[0].method
-        #print(context['treatments'])
-        #print(context['animals'][0]['id'])
-        return context
+    #     context = super(index, self).get_context_data(**kwargs)
+    #     context['animals'] = sorted(SurgInfo.objects.all(), key = lambda t: t.animalid)
+    #     return context
 
 class Info(View):
     template_name = 'surgery/info.html'
