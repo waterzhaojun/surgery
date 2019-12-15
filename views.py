@@ -17,8 +17,24 @@ class index(generic.ListView):
 
 class Info(View):
     template_name = 'surgery/info.html'
+
     def get(self, request, **kwargs):
-        animal = SurgInfo.objects.filter(animalid = kwargs['pk'])[0]
+        
+        # there are two different url request:
+        # info/DL122
+        # or
+        # info/?animal=DL122
+        # The first one goes in kwargs
+        # The second one goes in request.GET object.
+        if 'animalid' in kwargs.keys():
+            animalid = kwargs['animalid']
+        else:
+            animalid = dict(request.GET.lists())['animalid'][0]
+
+        print(animalid)
+        
+        animal = SurgInfo.objects.filter(animalid = animalid)[0]
+        
         treatments = animal.surgtreatment_set.all()
         context = {'animal': animal, 'treatments': treatments}
         return render(request, self.template_name, context)
