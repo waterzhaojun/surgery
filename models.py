@@ -18,6 +18,9 @@ class SurgInfo(models.Model):
         managed = False
         db_table = 'surg_info'
 
+    #def get_absolute_url(self): # As I am using addaminal to add surginfo, this way to reverse a success url doesn't work.
+    #    return urls.reverse('index')
+
 
 class SurgTreatment(models.Model):
     animalid = models.ForeignKey(SurgInfo, models.DO_NOTHING, db_column='animalid')
@@ -32,3 +35,19 @@ class SurgTreatment(models.Model):
     class Meta:
         managed = False
         db_table = 'surg_treatment'
+
+class TransgenicAnimalLog(models.Model):
+    animalid = models.CharField(primary_key=True, max_length=50)
+    #cageid = models.CharField(max_length=20)
+    dob = models.DateField(blank=True, null=True)
+    ear_punch = models.CharField(max_length=10, blank=True, null=True)
+    gender = models.CharField(max_length=1, blank=True, null=True)
+    #birth_mate = models.ForeignKey('TransgenicMouseBreeding', models.DO_NOTHING, blank=True, null=True)
+    #genotype = models.TextField(blank=True, null=True)
+    #test_company = models.CharField(max_length=20, blank=True, null=True)
+    #plate_num = models.CharField(max_length=20, blank=True, null=True)
+    #full_name = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'transgenic_animal_log'

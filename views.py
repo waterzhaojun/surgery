@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views import generic, View
-from .models import SurgInfo, SurgTreatment
+from .models import SurgInfo, SurgTreatment, TransgenicAnimalLog
+from .forms import SurgInfoForm
+import django.urls as urls
 
 # root = '/Users/Melody/Documents/expdata/SURG'
 # Create your views here.
@@ -38,3 +40,14 @@ class Info(View):
         treatments = animal.surgtreatment_set.all()
         context = {'animal': animal, 'treatments': treatments}
         return render(request, self.template_name, context)
+
+class Addanimal(generic.CreateView):
+    form_class = SurgInfoForm
+    model = SurgInfo
+    template_name = 'surgery/addanimal.html'
+
+    def get_success_url(self):
+        return urls.reverse('index')
+        #{% url 'app_name:app_url' %}
+
+    

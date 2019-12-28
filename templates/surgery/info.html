@@ -5,7 +5,7 @@ gender: {{ animal.gender }}<br>
 transgenic id: {{ animal.transgenic_id }}<br>
 birthday: {{ animal.birthday }}<br>
 ear punch: {{ animal.ear_punch }}<br>
-Treatments: <br>
+<p style="background-color:lightgray;">Treatments: </p>
 {% for value in treatments %}
 ===================================================<br>
 {{ value.method }}<br>
@@ -13,7 +13,22 @@ Treatments: <br>
 {% for key, value in value.parameters.items %}
 {{ key }}: {{ value }}<br>
 {% endfor %}
+{{ value.note}}<br>
 {% endfor %}
 <br>
+<p style="background-color:lightgray;">Add a new treatment (Note: not add this function yet)</p>
+<form action="addtreatment" method="POST">
+<select name="treatmenttype"> 
+    <option selected="true" disabled="disabled">Choose a treatment type</option> 
+    <option value="aavinject">aav inject</option> 
+    <option value="windowsetup">window setup</option> 
+    <option value="drug">drug treatment</option> 
+    <option value="purfusion">purfusion</option> 
+    <option value="tbi">traumatic head injury</option> 
+</select> 
+<input type="submit" value="Add"><br>
+
+
+</form>
 
 <a href="../">return</a>
