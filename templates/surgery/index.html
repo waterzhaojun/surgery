@@ -15,7 +15,7 @@
                 <th>transgenic id</th>
                 <th>method</th>
             </tr>
-            {% for obj in object_list %}
+            {% for obj in animals %}
             <tr>
                 <td><a href = "{% url 'info' obj.animalid %}">{{ obj.animalid }}</a></td>
                 

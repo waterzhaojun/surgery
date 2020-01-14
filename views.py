@@ -11,11 +11,13 @@ class index(generic.ListView):
     template_name = 'surgery/index.html'   # if use ListView class, default template_name is _list.html. So you have to revise it.
     queryset = sorted(SurgInfo.objects.select_related().filter(terminated = False), key = lambda t: t.animalid)   # default output variable. In template, use object_list to refer to this.
     # the default output to tmplate is object_list
-    # def get_context_data(self, **kwargs):
+    # It is ok if I don't define get_context_data, but I think if I don't use it, it always don't change page after I update the database.
+    # And, in the index template, you need to use animals instead of object_list
+    def get_context_data(self, **kwargs):
         # queryset is the default output, besides that, you can use get_context_data to add more in the dict.
-    #     context = super(index, self).get_context_data(**kwargs)
-    #     context['animals'] = sorted(SurgInfo.objects.all(), key = lambda t: t.animalid)
-    #     return context
+        context = super(index, self).get_context_data(**kwargs)
+        context['animals'] = sorted(SurgInfo.objects.all(), key = lambda t: t.animalid)
+        return context
 
 class Info(View):
     template_name = 'surgery/info.html'
