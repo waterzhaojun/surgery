@@ -16,7 +16,7 @@ class index(generic.ListView):
     def get_context_data(self, **kwargs):
         # queryset is the default output, besides that, you can use get_context_data to add more in the dict.
         context = super(index, self).get_context_data(**kwargs)
-        context['animals'] = sorted(SurgInfo.objects.all(), key = lambda t: t.animalid)
+        context['animals'] = sorted(SurgInfo.objects.select_related().filter(terminated = False), key = lambda t: t.animalid)
         return context
 
 class Info(View):
