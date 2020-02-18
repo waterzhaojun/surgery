@@ -1,12 +1,12 @@
-{% load static %}
-<html>
-    <head>
-    <link rel="stylesheet" type="text/css" href="{% static "surgery/style.css" %}">
-    </head>
+{% extends 'base.html' %}
 
-    <body>
+{% block customecss %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "surgery/style.css" %}">
+{% endblock %}
+
+{% block content %}
         <h3>Surgery treated animal list</h3><br>
-        <a href = "addanimal">Add a new animal</a>
 
         <table>
             <tr>
@@ -34,5 +34,5 @@
             Animal id: <input type="text" name="animalid">
             <input type="submit" value="Search">
         </form>
-    </body>
-</html>
+
+{% endblock %}
