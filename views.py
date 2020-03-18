@@ -3,6 +3,10 @@ from django.views import generic, View
 from .models import SurgInfo, SurgTreatment, TransgenicAnimalLog
 from .forms import SurgInfoForm
 import django.urls as urls
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponse, HttpResponseRedirect
+
+from django.contrib.auth.decorators import login_required
 
 # root = '/Users/Melody/Documents/expdata/SURG'
 # Create your views here.
@@ -49,7 +53,11 @@ class Addanimal(generic.CreateView):
     template_name = 'surgery/addanimal.html'
 
     def get_success_url(self):
-        return urls.reverse('index')
+        return urls.reverse('surgindex')
         #{% url 'app_name:app_url' %}
 
     
+@login_required
+def terminate(request, animalid):
+    SurgInfo.objects.filter(animalid = animalid).update(terminated=True)
+    return HttpResponseRedirect(reverse('surgindex')) # reverse by this url name.

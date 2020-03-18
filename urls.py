@@ -9,10 +9,11 @@ from . import views
 
 urlpatterns = [
     path('', views.index.as_view()),
-    path('surgery/', views.index.as_view(), name='index'),
+    path('surgery/', views.index.as_view(), name='surgindex'),
     path('info/', views.Info.as_view()),
     path('info/<str:animalid>/', views.Info.as_view(), name='info'),
     path('addanimal', views.Addanimal.as_view(), name='addanimal'),
+    path('terminate/<str:animalid>', views.terminate, name='terminate'),
     # path(r'^info/(?P<animalid>\w+)/$', views.Info.as_view()),
     # path('/info/', views.Info.as_view()),
     # path('aav_inject', views.aav_inject, name='aav_inject'),

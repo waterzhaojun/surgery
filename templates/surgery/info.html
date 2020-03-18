@@ -30,11 +30,18 @@
         <option value="purfusion">purfusion</option> 
         <option value="tbi">traumatic head injury</option> 
     </select> 
-    <input type="submit" value="Add"><br>
+    <input type="submit" value="Add"></input><br>
 
 
     </form>
 
+    <hr>
+    <form action="{% url 'terminate' animal.animalid %}" method="POST">
+    {% csrf_token %}
+        <input type="submit" value="Terminate"></input>
+    </form>
+
+    <hr>
     <a href="../">return</a>
 
 {% endblock %}
