@@ -6,29 +6,27 @@
 <link rel="stylesheet" type="text/css" href="{% static "surgery/style.css" %}">
 -->
 <style>
-td {
-    padding: 10px 10px;
-}
-th {
-    align: center;
-}
+
 </style>
 {% endblock %}
 
 {% block content %}
-        <h3>Surgery treated animal list</h3><br>
+        <h1>Surgery treated animal list</h1>
 
-        <table>
-            <tr>
-                <th>animalid</th>
-                <th>gender</th>
-                <th>transgenic id</th>
-                <th>method</th>
-            </tr>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">animalid</th>
+                    <th scope="col">species</th>
+                    <th scope="col">gender</th>
+                    <th scope="col">transgenic id</th>
+                    <th scope="col">method</th>
+                </tr>
+            </thead>
             {% for obj in animals %}
             <tr>
                 <td><a href = "{% url 'info' obj.animalid %}">{{ obj.animalid }}</a></td>
-                
+                <td>{{ obj.species }}</td>
                 <td>{{ obj.gender }}</td>
                 <td>{{ obj.transgenic_id }}</td>
                 <td>

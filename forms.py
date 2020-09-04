@@ -1,11 +1,11 @@
 from django import forms
-from .models import SurgInfo, SurgTreatment, TransgenicAnimalLog
+from .models import SurgTreatment, TransgenicAnimalLog #SurgInfo, 
 from django.db.models import Q
 
 class SurgInfoForm(forms.ModelForm):
     class Meta:
-        model=SurgInfo
-        fields = ['animalid', 'transgenic_id', 'ear_punch', 'species', 'strain', 'note']
+        model=SurgTreatment#SurgInfo
+        fields = ['animalid']#, 'transgenic_id', 'ear_punch', 'species', 'strain', 'note']
 
         """def clean_jsonfield(self):
             jdata = self.cleaned_data['genotype']

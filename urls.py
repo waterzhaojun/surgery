@@ -12,7 +12,7 @@ urlpatterns = [
     path('surgery/', views.index.as_view(), name='surgindex'),
     path('info/', views.Info.as_view()),
     path('info/<str:animalid>/', views.Info.as_view(), name='info'),
-    path('addanimal', views.Addanimal.as_view(), name='addanimal'),
+    #path('addanimal', views.Addanimal.as_view(), name='addanimal'),
     path('terminate/<str:animalid>', views.terminate, name='terminate'),
     # path(r'^info/(?P<animalid>\w+)/$', views.Info.as_view()),
     # path('/info/', views.Info.as_view()),
