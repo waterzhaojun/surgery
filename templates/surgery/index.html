@@ -19,7 +19,7 @@
                     <th scope="col">animalid</th>
                     <th scope="col">species</th>
                     <th scope="col">gender</th>
-                    <th scope="col">transgenic id</th>
+                    <th scope="col">age</th>
                     <th scope="col">method</th>
                 </tr>
             </thead>
@@ -28,7 +28,7 @@
                 <td><a href = "{% url 'info' obj.animalid %}">{{ obj.animalid }}</a></td>
                 <td>{{ obj.species }}</td>
                 <td>{{ obj.gender }}</td>
-                <td>{{ obj.transgenic_id }}</td>
+                <td>{{ obj.dob }}</td>
                 <td>
                 {% for t in obj.surgtreatment_set.all %}
                 {{ t.method }} ({{ t.date }}) &nbsp
